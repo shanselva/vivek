@@ -51,6 +51,9 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     if (isActive !== null) updates.isActive = isActive === 'true';
 
     const updatedBanner = await Banner.findByIdAndUpdate(id, { $set: updates }, { new: true });
+    if (!updatedBanner) {
+      return NextResponse.json({ success: false, error: 'Banner not found or failed to update' }, { status: 404 });
+    }
     
     const result = { ...updatedBanner.toObject(), id: updatedBanner._id.toString() };
     return NextResponse.json({ success: true, data: result });
