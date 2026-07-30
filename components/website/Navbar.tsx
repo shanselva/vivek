@@ -63,7 +63,7 @@ export function Navbar() {
       </div>
 
       {}
-      <div className={`w-full py-1.5 md:py-2 relative z-10 transition-all duration-300 px-4 md:px-8`}>
+      <div className={`w-full py-1 relative z-10 transition-all duration-300 px-4 md:px-8`}>
         <div className="container mx-auto xl:max-w-[1280px] flex items-center justify-between">
 
           {}
@@ -71,8 +71,8 @@ export function Navbar() {
             <Image
               src="/images/logo.png"
               alt="Vivek Vijay & Co. Logo"
-              width={70}
-              height={70}
+              width={55}
+              height={55}
               className="object-contain transition-transform group-hover:scale-105"
             />
             <div className="flex flex-col justify-center ml-1">
