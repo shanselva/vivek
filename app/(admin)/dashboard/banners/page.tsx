@@ -109,8 +109,6 @@ function BannersContent() {
           data={banners} 
           onDelete={handleDelete}
           getEditLink={(id) => `?action=edit&id=${id}`}
-          addLink="?action=add-banner"
-          addLabel="Add Banner"
         />
       )}
 
