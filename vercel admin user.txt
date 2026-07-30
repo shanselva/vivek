@@ -1,0 +1,49 @@
+1. Prepare MongoDB Atlas
+Create an Atlas cluster and a dedicated database user with access only to the construction database. Do not use the MongoDB root user in Vercel.
+Your connection string should resemble:
+mongodb+srv://vvc_app:<PASSWORD>@<CLUSTER>/construction?retryWrites=true&w=majority
+Configure Atlas Network Access so Vercel can connect. Atlas only accepts clients permitted by its IP access list. See MongoDB Atlas connection setup and IP access-list documentation.
+Because the root password was shared in this conversation, rotate it before production use.
+2. Import the repository into Vercel
+In Vercel:
+Select Add New → Project.
+Import the Git repository.
+Keep Framework Preset: Next.js.
+Leave the standard build command as next build.
+Add the environment variables below.
+Alternatively, from this project directory:
+npm install -g vercel
+vercel login
+vercel link
+vercel --prod
+See Vercel’s CLI deployment guide.
+3. Configure Vercel environment variables
+In Project → Settings → Environment Variables, add these for Production:
+MONGODB_URI=mongodb+srv://vvc_app:<PASSWORD>@<CLUSTER>/construction?retryWrites=true&w=majority
+JWT_SECRET=<LONG_RANDOM_SECRET>
+
+CLOUDINARY_CLOUD_NAME=<YOUR_VALUE>
+CLOUDINARY_API_KEY=<YOUR_VALUE>
+CLOUDINARY_API_SECRET=<YOUR_VALUE>
+Generate JWT_SECRET locally:
+node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
+Cloudinary should be configured because files saved to a Vercel Function’s local filesystem are not permanent.
+After adding or modifying environment variables, redeploy—the changes only affect new deployments. See Vercel environment variables.
+4. Create the production website administrator
+Run this once from your trusted local PowerShell terminal. Use the same production Atlas URI entered in Vercel:
+$env:MONGODB_URI = "mongodb+srv://vvc_app:<PASSWORD>@<CLUSTER>/construction?retryWrites=true&w=majority"
+$env:ADMIN_EMAIL = "admin@yourdomain.com"
+$env:ADMIN_PASSWORD = "Choose-A-Strong-Password"
+$env:ADMIN_NAME = "Site Administrator"
+
+npm run admin:provision
+
+Remove-Item Env:MONGODB_URI, Env:ADMIN_EMAIL, Env:ADMIN_PASSWORD, Env:ADMIN_NAME
+This creates or updates the administrator inside:
+Database: construction
+Collection: adminusers
+The password is stored as a bcrypt hash. The command does not create a MongoDB database account; it creates the website login account.
+5. Verify production
+After deployment:
+https://your-project.vercel.app/login
+Sign in using the ADMIN_EMAIL and ADMIN_PASSWORD used in the provisioning command. For Preview deployments, use separate Preview environment variables and preferably a separate database.
