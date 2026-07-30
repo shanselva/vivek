@@ -31,7 +31,6 @@ export interface Service {
   createdAt: string;
 }
 
-
 export interface GalleryItem {
   id: string;
   url?: string;
@@ -42,7 +41,6 @@ export interface GalleryItem {
   order: number;
   createdAt: string;
 }
-
 
 export interface Testimonial {
   id: string;
