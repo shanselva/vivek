@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
     }
 
     const newBanner = await Banner.create({
-      type: formData.get('type') || 'image',
+      type: (formData.get('type') as 'image' | 'video') || 'image',
       src: srcUrl,
       eyebrow: formData.get('eyebrow') as string || undefined,
       heading1,
