@@ -5,38 +5,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 
-const defaultMediaItems = [
-  {
-    type: 'video',
-    src: '/images/image.mp4',
-    eyebrow: '18+ Years of Proven Excellence',
-    heading1: 'Commercial cum Office',
-    heading2: 'Complex, Virugambakkam',
-    location: 'Chennai',
-    subtitle: 'A landmark commercial cum office complex built for TNHB — 51,050 Sft of civil excellence at Virugambakkam, Chennai. Built to impress every client from the very first visit.',
-  },
-  {
-    type: 'video',
-    src: '/images/herosection_v2.mp4',
-    eyebrow: 'Residential Excellence',
-    heading1: 'High Rise Flats &',
-    heading2: 'Tenements Building',
-    location: 'Nandanam, Chennai',
-    subtitle: 'Premium high-rise flats and tenements delivering world-class residential living at Nandanam, Chennai — crafted with precision from foundation to terrace.',
-  },
-  {
-    type: 'image',
-    src: '/images/kolathur_angadi.png',
-    eyebrow: 'Commercial Infrastructure',
-    heading1: 'Construction of',
-    heading2: 'Modern Market',
-    location: 'Porur, Chennai — CMDA',
-    subtitle: 'A state-of-the-art modern market complex executed for CMDA — redefining commercial infrastructure with 61,450 Sft of multi-floor retail and civic space.',
-  },
-];
-
 export function Hero() {
-  const [items, setItems] = useState<any[]>(defaultMediaItems);
+  const [items, setItems] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -71,6 +41,9 @@ export function Hero() {
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     setProgress(0);
+    
+    if (items.length === 0) return;
+    
     const currentMedia = items[currentIndex];
 
     videoRefs.current.forEach((vid, idx) => {
@@ -114,6 +87,12 @@ export function Hero() {
   }, [currentIndex]);
 
   const slide = items[currentIndex];
+
+  if (items.length === 0) {
+    return (
+      <div className="relative h-[65vh] min-h-[400px] md:h-[calc(100vh-104px)] md:min-h-[600px] bg-[#081221]" />
+    );
+  }
 
   return (
     <div className="relative h-[65vh] min-h-[400px] md:h-[calc(100vh-104px)] md:min-h-[600px] flex items-end pb-10 md:pb-14 overflow-hidden">
