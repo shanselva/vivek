@@ -45,7 +45,7 @@ export function AboutPreview() {
               <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2">
                 18+ <span className="text-base md:text-xl font-semibold">years</span>
               </div>
-              <div className="text-xs md:text-sm font-medium leading-snug text-white/90">of <br/> Excellence</div>
+              <div className="text-xs md:text-sm font-medium leading-snug text-white/90">of Excellence</div>
             </div>
 
           </div>
