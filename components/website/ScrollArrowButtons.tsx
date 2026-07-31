@@ -77,22 +77,19 @@ export function ScrollArrowButtons({
 export function useHorizontalScroll(amount = 0.8) {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const scroll = React.useCallback(
-    (direction: 'left' | 'right') => {
-      const node = ref.current;
-      if (!node) return;
-      const delta = Math.max(280, node.clientWidth * amount);
-      node.scrollBy({
-        left: direction === 'left' ? -delta : delta,
-        behavior: 'smooth',
-      });
-    },
-    [amount],
-  );
-
-  return {
-    ref,
-    scrollLeft: () => scroll('left'),
-    scrollRight: () => scroll('right'),
+  const scrollLeft = () => {
+    const node = ref.current;
+    if (!node) return;
+    const delta = Math.max(280, node.clientWidth * amount);
+    node.scrollBy({ left: -delta, behavior: 'smooth' });
   };
+
+  const scrollRight = () => {
+    const node = ref.current;
+    if (!node) return;
+    const delta = Math.max(280, node.clientWidth * amount);
+    node.scrollBy({ left: delta, behavior: 'smooth' });
+  };
+
+  return { ref, scrollLeft, scrollRight };
 }
