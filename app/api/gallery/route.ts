@@ -10,12 +10,17 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const category = searchParams.get('category');
     const featured = searchParams.get('featured');
+    const limitParam = searchParams.get('limit');
+    const limit = limitParam ? Math.min(Math.max(parseInt(limitParam, 10) || 0, 1), 100) : undefined;
 
     const filter: any = {};
     if (category) filter.category = category;
     if (featured === 'true') filter.featured = true;
 
-    const items = await GalleryItem.find(filter).sort({ order: 1 }).lean();
+    let query = GalleryItem.find(filter).sort({ order: 1 });
+    if (limit) query = query.limit(limit);
+
+    const items = await query.lean();
     const result = items.map((i: any) => ({ ...i, id: i._id.toString() }));
     return NextResponse.json({ success: true, data: result });
   } catch (error) {

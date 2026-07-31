@@ -96,7 +96,9 @@ export function OurImages({ items = [] }: { items?: any[] }) {
               >
                 <img 
                   src={src} 
-                  alt={`Gallery Image ${idx + 1}`} 
+                  alt={`Gallery Image ${idx + 1}`}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                 />
                 {}

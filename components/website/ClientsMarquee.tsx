@@ -51,7 +51,7 @@ export function ClientsMarquee({ initialClients = [] }: { initialClients?: Clien
               className="flex items-center gap-4 px-6 py-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm transition-all hover:shadow-md hover:border-[#0a42a8]/40 group"
             >
               <div className="w-10 h-10 shrink-0 rounded-xl bg-slate-50 border border-slate-100 p-2 flex items-center justify-center">
-                <img src={client.logo} alt={client.name} className="max-w-full max-h-full object-contain filter group-hover:scale-110 transition-transform" />
+                <img src={client.logo} alt={client.name} loading="lazy" decoding="async" className="max-w-full max-h-full object-contain filter group-hover:scale-110 transition-transform" />
               </div>
               <span className="text-sm font-bold text-slate-800 whitespace-nowrap tracking-wide">
                 {client.name}

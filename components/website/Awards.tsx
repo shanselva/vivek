@@ -9,7 +9,9 @@ export function Awards() {
         <div className="w-full md:w-2/5 lg:w-[40%] min-h-[300px] flex items-center justify-center py-8">
           <img 
             src="/images/award from stalin.jpg" 
-            alt="Honorable Chief Minister Award" 
+            alt="Honorable Chief Minister Award"
+            loading="lazy"
+            decoding="async"
             className="w-[85%] md:w-[75%] h-auto object-contain rounded-lg shadow-lg border-2 border-white/10"
           />
         </div>

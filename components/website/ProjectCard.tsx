@@ -25,6 +25,8 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
         <img
           src={project.coverImage || (project.images && project.images.length > 0 ? project.images[0] : '/images/placeholder.jpg')}
           alt={project.title}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover object-[center_top] transition-transform duration-1000 group-hover:scale-110"
           onError={(e) => {
             (e.target as HTMLImageElement).src = '/images/placeholder.jpg';

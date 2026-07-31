@@ -5,7 +5,7 @@ import { TeamMember } from '@/lib/models/TeamMember';
 import { Testimonial } from '@/lib/models/Testimonial';
 import { TeamCard } from '@/components/website/TeamCard';
 import { TestimonialCarousel } from '@/components/website/TestimonialCarousel';
-import { Target, Shield, Award, Landmark, Handshake, Gem } from 'lucide-react';
+import { Target, Shield, Landmark, Handshake, Gem } from 'lucide-react';
 import Image from 'next/image';
 import type { TeamMember as WebsiteTeamMember, Testimonial as WebsiteTestimonial } from '@/types';
 
@@ -102,9 +102,10 @@ export default async function AboutPage() {
             </div>
 
             <div className="engineering-mastery-card rounded-2xl bg-[#0a42a8] p-6 text-white shadow-2xl shadow-black/20 lg:justify-self-end lg:min-w-[320px]">
-              <Award size={34} className="engineering-mastery-icon mb-5 text-white/80" />
-              <div className="text-5xl font-extrabold leading-none mb-4">18+</div>
-              <div className="text-lg font-semibold leading-snug">Years of Engineering Mastery</div>
+              <div className="text-5xl font-extrabold leading-none mb-2">
+                18+ <span className="text-3xl font-bold">years</span>
+              </div>
+              <div className="text-lg font-semibold leading-snug">of Engineering Mastery</div>
             </div>
           </div>
         </div>

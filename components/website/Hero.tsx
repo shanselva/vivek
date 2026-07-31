@@ -5,18 +5,30 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 
-export function Hero() {
-  const [items, setItems] = useState<any[]>([]);
+type BannerItem = {
+  type: 'image' | 'video';
+  src: string;
+  heading1?: string;
+  heading2?: string;
+  location?: string;
+  subtitle?: string;
+};
+
+export function Hero({ initialItems = [] }: { initialItems?: BannerItem[] }) {
+  const [items, setItems] = useState<BannerItem[]>(initialItems);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
-  const [mounted, setMounted] = useState(false);
-  const [textKey, setTextKey] = useState(0); 
+  const [textKey, setTextKey] = useState(0);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
-    setMounted(true);
+    if (initialItems.length > 0) {
+      setItems(initialItems);
+      return;
+    }
+
     const fetchBanners = async () => {
       try {
         const res = await fetch('/api/banners?active=true');
@@ -29,7 +41,7 @@ export function Hero() {
       }
     };
     fetchBanners();
-  }, []);
+  }, [initialItems]);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % items.length);
@@ -41,27 +53,26 @@ export function Hero() {
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     setProgress(0);
-    
+
     if (items.length === 0) return;
-    
+
     const currentMedia = items[currentIndex];
 
     videoRefs.current.forEach((vid, idx) => {
-      if (vid) {
-        if (idx === currentIndex) {
-          vid.currentTime = 0;
-          vid.playbackRate = 0.65; 
-          const playPromise = vid.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(error => {
-              if (error.name !== 'AbortError') {
-                console.warn("Auto-play failed:", error);
-              }
-            });
-          }
-        } else {
-          vid.pause();
+      if (!vid) return;
+      if (idx === currentIndex) {
+        vid.currentTime = 0;
+        vid.playbackRate = 0.65;
+        const playPromise = vid.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            if (error.name !== 'AbortError') {
+              console.warn('Auto-play failed:', error);
+            }
+          });
         }
+      } else {
+        vid.pause();
       }
     });
 
@@ -84,9 +95,7 @@ export function Hero() {
       if (timerRef.current) clearTimeout(timerRef.current);
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [currentIndex]);
-
-  const slide = items[currentIndex];
+  }, [currentIndex, items]);
 
   if (items.length === 0) {
     return (
@@ -96,7 +105,6 @@ export function Hero() {
 
   return (
     <div className="relative h-[65vh] min-h-[400px] md:h-[calc(100vh-104px)] md:min-h-[600px] flex items-end pb-10 md:pb-14 overflow-hidden">
-
       <style>{`
         @keyframes heroFadeUp {
           from { opacity: 0; transform: translateY(36px); }
@@ -116,56 +124,71 @@ export function Hero() {
         }
       `}</style>
 
-      {}
       <div className="absolute inset-0 z-0 bg-[#081221] overflow-hidden">
-        <div 
+        <div
           className="flex w-full h-full transition-transform duration-1000 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {items.map((item, index) => {
             const isActive = currentIndex === index;
+            const isNear = Math.abs(index - currentIndex) <= 1 ||
+              (currentIndex === 0 && index === items.length - 1) ||
+              (currentIndex === items.length - 1 && index === 0);
+            const shouldLoadMedia = isActive || isNear;
+
             return (
-              <div
-                key={item.src}
-                className="w-full h-full flex-shrink-0 relative"
-              >
-                {}
+              <div key={`${item.src}-${index}`} className="w-full h-full flex-shrink-0 relative">
                 <div className="absolute inset-0 w-full h-full">
                   {item.type === 'video' ? (
-                    <video
-                      ref={(el) => { if (el) videoRefs.current[index] = el; }}
-                      src={item.src}
-                      muted
-                      playsInline
-                      autoPlay={index === 0}
-                      preload={index === 0 ? "auto" : "metadata"}
-                      poster={index === 0 ? "/images/video%20imatge%20for%20hero%20seciton.png" : index === 1 ? "/images/kolathur_angadi.png" : undefined}
-                      onEnded={isActive ? handleNext : undefined}
-                      onTimeUpdate={(e) => {
-                        if (isActive) {
-                          const vid = e.currentTarget;
-                          setProgress((vid.currentTime / vid.duration) * 100);
+                    shouldLoadMedia ? (
+                      <video
+                        ref={(el) => {
+                          videoRefs.current[index] = el;
+                        }}
+                        src={item.src}
+                        muted
+                        playsInline
+                        autoPlay={isActive}
+                        preload={isActive ? 'auto' : 'metadata'}
+                        poster={
+                          index === 0
+                            ? '/images/video%20imatge%20for%20hero%20seciton.png'
+                            : index === 1
+                              ? '/images/kolathur_angadi.png'
+                              : undefined
                         }
-                      }}
-                      className="w-full h-full object-cover"
-                    />
+                        onEnded={isActive ? handleNext : undefined}
+                        onTimeUpdate={(e) => {
+                          if (isActive) {
+                            const vid = e.currentTarget;
+                            if (vid.duration) {
+                              setProgress((vid.currentTime / vid.duration) * 100);
+                            }
+                          }
+                        }}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-[#081221]" />
+                    )
                   ) : (
                     <img
-                      src={item.src}
+                      src={shouldLoadMedia ? item.src : undefined}
                       alt={`Hero slide ${index + 1}`}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      fetchPriority={index === 0 ? 'high' : 'auto'}
+                      decoding={index === 0 ? 'sync' : 'async'}
                       className="w-full h-full object-cover"
                     />
                   )}
-                  {}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none z-20" />
                 </div>
-                
-                {}
+
                 <div className="absolute inset-0 flex items-end pb-10 md:pb-14 pt-8">
                   <div className="relative z-30 w-full px-4 md:px-16 lg:px-24 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 md:gap-8 pr-12 md:pr-24">
                     <div className="text-left max-w-3xl">
-                      {}
                       <h1
+                        key={`h-${textKey}-${index}`}
                         className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-white mb-2 md:mb-3 leading-tight drop-shadow-lg transition-all duration-700 ${isActive ? 'opacity-100 translate-y-0 delay-300' : 'opacity-0 translate-y-8'}`}
                       >
                         <span className="text-white">{item.heading1}</span>{' '}
@@ -173,7 +196,6 @@ export function Hero() {
                         <span className="text-[#FFB800]">{item.heading2}</span>
                       </h1>
 
-                      {}
                       <div
                         className={`mb-4 md:mb-5 transition-all duration-700 ${isActive ? 'opacity-100 translate-y-0 delay-500' : 'opacity-0 translate-y-8'}`}
                       >
@@ -182,7 +204,6 @@ export function Hero() {
                         </span>
                       </div>
 
-                      {}
                       <p
                         className={`text-base sm:text-lg md:text-xl text-gray-200 mb-0 lg:mb-10 mr-auto leading-relaxed drop-shadow-md max-w-2xl transition-all duration-700 ${isActive ? 'opacity-100 translate-y-0 delay-700' : 'opacity-0 translate-y-8'}`}
                       >
@@ -190,7 +211,6 @@ export function Hero() {
                       </p>
                     </div>
 
-                    {}
                     <div
                       className={`flex flex-row items-center justify-start lg:justify-end gap-2 sm:gap-4 w-full lg:w-auto shrink-0 mt-2 md:mt-0 transition-all duration-700 ${isActive ? 'opacity-100 translate-y-0 delay-1000' : 'opacity-0 translate-y-8'}`}
                     >
@@ -213,14 +233,16 @@ export function Hero() {
         </div>
       </div>
 
-      {}
       <div className="absolute left-1/2 -translate-x-1/2 bottom-4 md:left-auto md:translate-x-0 md:right-8 md:top-1/2 md:-translate-y-1/2 md:bottom-auto z-30 flex flex-row md:flex-col gap-3">
         {items.map((_, index) => {
           const isActive = currentIndex === index;
           return (
             <button
               key={index}
-              onClick={() => { setCurrentIndex(index); setTextKey(k => k + 1); }}
+              onClick={() => {
+                setCurrentIndex(index);
+                setTextKey((k) => k + 1);
+              }}
               className={`relative overflow-hidden transition-all duration-500 rounded-full ${
                 isActive
                   ? 'bg-white/20 w-10 h-2 md:w-2 md:h-10 shadow-[0_0_12px_rgba(255,184,0,0.4)]'

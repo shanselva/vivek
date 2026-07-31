@@ -2,12 +2,12 @@ import React from 'react';
 
 export default function WebsiteLoading() {
   return (
-    <div className="min-h-screen bg-[#0f172a] flex flex-col items-center justify-center pt-20 px-4">
-      <div className="flex flex-col items-center gap-4 animate-pulse">
-        <div className="w-16 h-16 rounded-full border-4 border-[#FFB800] border-t-transparent animate-spin"></div>
-        <p className="text-white font-serif tracking-widest uppercase text-sm font-semibold">
-          Loading Vivek Vijay &amp; Co...
-        </p>
+    <div className="min-h-screen bg-white">
+      <div className="h-[65vh] min-h-[400px] md:h-[calc(100vh-104px)] bg-[#081221] animate-pulse" />
+      <div className="container mx-auto px-4 xl:max-w-[1280px] py-16 space-y-6">
+        <div className="h-8 w-40 bg-slate-200 rounded animate-pulse" />
+        <div className="h-12 w-72 max-w-full bg-slate-100 rounded animate-pulse" />
+        <div className="h-4 w-full max-w-2xl bg-slate-100 rounded animate-pulse" />
       </div>
     </div>
   );

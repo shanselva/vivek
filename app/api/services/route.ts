@@ -8,7 +8,14 @@ import { saveImageLocally } from '@/lib/uploads';
 export async function GET(req: NextRequest) {
   try {
     await connectDB();
-    const services = await Service.find().sort({ order: 1 }).lean();
+    const { searchParams } = new URL(req.url);
+    const limitParam = searchParams.get('limit');
+    const limit = limitParam ? Math.min(Math.max(parseInt(limitParam, 10) || 0, 1), 100) : undefined;
+
+    let query = Service.find().sort({ order: 1 });
+    if (limit) query = query.limit(limit);
+
+    const services = await query.lean();
     const result = services.map((s: any) => ({ ...s, id: s._id.toString() }));
     return NextResponse.json({ success: true, data: result });
   } catch (error: any) {

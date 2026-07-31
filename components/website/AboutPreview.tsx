@@ -33,16 +33,19 @@ export function AboutPreview() {
             <div className="relative aspect-[4/4.5] w-[85%] overflow-hidden z-10 shadow-lg bg-slate-100">
               <img 
                 src="/images/building.png" 
-                alt="Construction Building" 
+                alt="Construction Building"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </div>
             
             {}
             <div className="absolute -bottom-6 left-0 md:-bottom-8 md:left-4 bg-[#0a42a8] text-white p-4 md:p-8 z-30 shadow-xl w-40 md:w-48 rounded-sm">
-              <Building2 size={24} className="mb-2 md:mb-4 text-white/80" />
-              <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2">18+</div>
-              <div className="text-xs md:text-sm font-medium leading-snug text-white/90">Years of <br/> Excellence</div>
+              <div className="text-2xl md:text-4xl font-bold mb-1 md:mb-2">
+                18+ <span className="text-base md:text-xl font-semibold">years</span>
+              </div>
+              <div className="text-xs md:text-sm font-medium leading-snug text-white/90">of <br/> Excellence</div>
             </div>
 
           </div>

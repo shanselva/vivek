@@ -11,13 +11,18 @@ export async function GET(req: NextRequest) {
     const category = searchParams.get('category');
     const status = searchParams.get('status');
     const featured = searchParams.get('featured');
+    const limitParam = searchParams.get('limit');
+    const limit = limitParam ? Math.min(Math.max(parseInt(limitParam, 10) || 0, 1), 100) : undefined;
 
     const filter: any = {};
     if (category) filter.category = category;
     if (status) filter.status = status;
     if (featured === 'true') filter.featured = true;
 
-    const projects = await Project.find(filter).sort({ createdAt: -1 }).lean();
+    let query = Project.find(filter).sort({ createdAt: -1 });
+    if (limit) query = query.limit(limit);
+
+    const projects = await query.lean();
 
     const result = projects.map((p: any) => ({
       ...p,
