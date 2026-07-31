@@ -42,16 +42,6 @@ export function OurImages({ items = [] }: { items?: any[] }) {
             </p>
           </div>
           <div className="shrink-0 flex items-center gap-3">
-            <div className="hidden sm:block">
-              <ScrollArrowButtons
-                onPrev={scrollLeft}
-                onNext={scrollRight}
-                variant="inline"
-                tone="brand"
-                prevLabel="Scroll gallery left"
-                nextLabel="Scroll gallery right"
-              />
-            </div>
             <Link href="/gallery" className="hidden md:block">
               <Button className="rounded-none bg-[#0a42a8] hover:bg-[#083587] text-white px-8 h-12 text-[14px] md:text-base font-medium">
                 View All Gallery <ArrowRight size={18} className="ml-2" />

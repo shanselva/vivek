@@ -17,25 +17,13 @@ export function ClientsMarquee({ initialClients = [] }: { initialClients?: Clien
   return (
     <section className="py-16 bg-slate-50 border-y border-slate-200 relative select-none">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
-          <div className="text-center md:text-left max-w-2xl">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-slate-900 tracking-wide">
-              Delivering Infrastructure for <span className="text-[#0a42a8]">Premier Institutions</span>
-            </h2>
-            <p className="text-slate-600 text-sm max-w-xl mt-2 font-medium md:mx-0 mx-auto">
-              Proudly executing landmark civil engineering developments across Tamil Nadu
-            </p>
-          </div>
-          <div className="hidden sm:block shrink-0 mx-auto md:mx-0">
-            <ScrollArrowButtons
-              onPrev={scrollLeft}
-              onNext={scrollRight}
-              variant="inline"
-              tone="brand"
-              prevLabel="Previous clients"
-              nextLabel="Next clients"
-            />
-          </div>
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-slate-900 tracking-wide">
+            Delivering Infrastructure for <span className="text-[#0a42a8]">Premier Institutions</span>
+          </h2>
+          <p className="text-slate-600 text-sm max-w-xl mx-auto mt-2 font-medium">
+            Proudly executing landmark civil engineering developments across Tamil Nadu
+          </p>
         </div>
 
         <div className="relative">
