@@ -10,7 +10,7 @@ export function StatsBar() {
 
   return (
     <div className="bg-secondary text-primary py-12 border-b-4 border-primary/20">
-      <div className="container mx-auto px-4 xl:max-w-[1280px]">
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-primary/20">
           {stats.map((stat, index) => (
             <div key={index} className="flex flex-col items-center justify-center">

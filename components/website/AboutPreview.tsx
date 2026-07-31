@@ -6,7 +6,7 @@ import { ArrowRight, ShieldCheck, Building2, Users } from 'lucide-react';
 export function AboutPreview() {
   return (
     <section className="py-12 md:py-20 lg:py-24 bg-white overflow-visible relative flex items-center min-h-[calc(100vh-104px)]">
-      <div className="container mx-auto px-4 xl:max-w-[1280px]">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-24">
           
           {}

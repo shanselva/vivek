@@ -39,7 +39,7 @@ export default async function CareersPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#0f172a]/60 to-transparent w-4/5"></div>
         </div>
         
-        <div className="container mx-auto px-4 md:px-8 xl:max-w-[1280px] relative z-10 w-full pt-10">
+        <div className="container mx-auto px-4 md:px-8 relative z-10 w-full pt-10">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-5 leading-tight drop-shadow-lg max-w-3xl">
             Build Excellence, <br /><span className="text-[#FFB800]">Shape Your Career</span>
           </h1>

@@ -90,7 +90,7 @@ export default async function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/10 to-transparent w-3/4"></div>
         </div>
         
-        <div className="container mx-auto px-4 md:px-8 xl:max-w-[1280px] relative z-10 w-full">
+        <div className="container mx-auto px-4 md:px-8 relative z-10 w-full">
           <div className="grid items-end gap-8 lg:grid-cols-[1fr_360px]">
             <div>
               <h1 className="text-3xl md:text-4xl lg:text-[42px] font-display font-bold text-white mb-4 leading-tight drop-shadow-md">
@@ -113,7 +113,7 @@ export default async function AboutPage() {
 
       {}
       <section className="pt-20 pb-10 md:pt-28 md:pb-12 bg-white">
-        <div className="container mx-auto px-4 xl:max-w-[1280px]">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-start">
             <div>
               <div className="mb-6">
@@ -176,7 +176,7 @@ export default async function AboutPage() {
 
       {}
       <section className="pt-10 pb-20 md:pt-12 md:pb-28 bg-slate-50">
-        <div className="container mx-auto px-4 xl:max-w-[1280px]">
+        <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-[#0a42a8] font-bold tracking-[0.15em] uppercase text-sm block mb-3">Our Philosophy</span>
             <h2 className="text-3xl md:text-5xl font-display font-extrabold text-[#0f172a] mb-6">Our Core Values</h2>
@@ -219,7 +219,7 @@ export default async function AboutPage() {
       {}
       {teamMembers.length > 0 && (
         <section className="py-20 bg-white">
-          <div className="container mx-auto px-4 xl:max-w-[1280px]">
+          <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-14">
               <span className="text-[#0a42a8] font-bold tracking-[0.15em] uppercase text-sm block mb-3">The People Behind the Projects</span>
               <h2 className="text-3xl md:text-5xl font-display font-extrabold text-[#0f172a] mb-4">Meet Our Team</h2>
@@ -237,7 +237,7 @@ export default async function AboutPage() {
       {}
       {testimonials.length > 0 && (
         <section className="py-20 bg-slate-50">
-          <div className="container mx-auto px-4 xl:max-w-[1280px]">
+          <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto mb-14">
               <span className="text-[#0a42a8] font-bold tracking-[0.15em] uppercase text-sm block mb-3">What Our Clients Say</span>
               <h2 className="text-3xl md:text-5xl font-display font-extrabold text-[#0f172a] mb-4">Client Testimonials</h2>
@@ -250,7 +250,7 @@ export default async function AboutPage() {
 
       {}
       <section className="py-16 bg-[#0a42a8]">
-        <div className="container mx-auto px-4 xl:max-w-[1280px] text-center">
+        <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-display font-extrabold text-white mb-4">Ready to Build with Us?</h2>
           <p className="text-blue-100 text-lg mb-8 max-w-xl mx-auto">Let&apos;s discuss how our 18+ years of engineering expertise can bring your next project to life.</p>
           <Link href="/contact">

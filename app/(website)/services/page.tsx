@@ -38,7 +38,7 @@ export default async function ServicesPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/10 to-transparent w-3/4"></div>
         </div>
         
-        <div className="container mx-auto px-4 md:px-8 xl:max-w-[1280px] relative z-10 w-full">
+        <div className="container mx-auto px-4 md:px-8 relative z-10 w-full">
           <h1 className="text-3xl md:text-4xl lg:text-[42px] font-display font-bold text-white mb-4 leading-tight drop-shadow-md">
             Our <span className="text-yellow-500">Services</span>
           </h1>
@@ -49,7 +49,7 @@ export default async function ServicesPage() {
       </div>
 
       <section className="py-20 bg-surface min-h-[50vh]">
-        <div className="container mx-auto px-4 xl:max-w-[1280px]">
+        <div className="container mx-auto px-4">
           {services.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (

@@ -33,7 +33,7 @@ export async function OurSectors() {
 
   return (
     <section className="py-20 bg-[#f4f7f9] relative overflow-hidden">
-      <div className="container mx-auto px-4 xl:max-w-[1280px]">
+      <div className="container mx-auto px-4">
         
         {}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">

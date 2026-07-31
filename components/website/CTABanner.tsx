@@ -11,7 +11,7 @@ export function CTABanner() {
         <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full bg-[#FFB800] blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 xl:max-w-[1280px] relative z-10">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
           
           {}

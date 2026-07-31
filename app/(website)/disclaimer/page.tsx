@@ -13,7 +13,7 @@ export default function DisclaimerPage() {
       {}
       <div className="bg-[#0f172a] text-white py-16 -mt-40 pt-44 mb-16 border-b border-white/10 shadow-lg relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-amber-600/20 via-transparent to-transparent pointer-events-none"></div>
-        <div className="container mx-auto px-4 xl:max-w-[1200px] relative z-10">
+        <div className="container mx-auto px-4 relative z-10">
           <div className="flex items-center gap-3 text-[#FFB800] font-bold text-sm tracking-widest uppercase mb-3">
             <AlertTriangle size={18} /> Statutory Notice
           </div>
@@ -27,7 +27,7 @@ export default function DisclaimerPage() {
       </div>
 
       {}
-      <div className="container mx-auto px-4 xl:max-w-[1000px]">
+      <div className="container mx-auto px-4">
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 md:p-14 text-slate-700 space-y-10 leading-relaxed">
           
           {}

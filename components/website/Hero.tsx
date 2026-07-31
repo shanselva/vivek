@@ -185,7 +185,7 @@ export function Hero({ initialItems = [] }: { initialItems?: BannerItem[] }) {
                 </div>
 
                 <div className="absolute inset-0 flex items-end pb-10 md:pb-14 pt-8">
-                  <div className="relative z-30 w-full px-4 md:px-16 lg:px-24 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 md:gap-8 pr-12 md:pr-24">
+                  <div className="relative z-30 w-full px-4 md:px-8 lg:px-10 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 md:gap-8">
                     <div className="text-left max-w-3xl">
                       <h1
                         key={`h-${textKey}-${index}`}

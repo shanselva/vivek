@@ -7,7 +7,7 @@ import { OurImages } from '@/components/website/OurImages';
 function GallerySkeleton() {
   return (
     <section className="py-20 bg-white">
-      <div className="container mx-auto px-4 xl:max-w-[1280px]">
+      <div className="container mx-auto px-4">
         <div className="h-10 w-48 bg-slate-200 rounded animate-pulse mb-4" />
         <div className="h-4 w-full max-w-xl bg-slate-100 rounded animate-pulse mb-12" />
         <div className="flex gap-6 overflow-hidden">

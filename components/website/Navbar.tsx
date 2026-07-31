@@ -34,7 +34,7 @@ export function Navbar() {
     <header className={`sticky top-0 w-full z-50 flex flex-col transition-all duration-300 shadow-md bg-white ${isScrolled ? '' : ''}`}>
       {}
       <div className="hidden lg:flex bg-[#072465] text-white text-[12px] py-2 px-4 md:px-8">
-        <div className="container mx-auto xl:max-w-[1280px] flex justify-between items-center">
+        <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center gap-6 font-medium">
             <a href="mailto:info@vivekvijayandcompany.com" className="flex items-center gap-2 hover:text-gray-300 transition-colors">
               <Mail size={14} /> info@vivekvijayandcompany.com
@@ -64,7 +64,7 @@ export function Navbar() {
 
       {}
       <div className={`w-full py-1 relative z-10 transition-all duration-300 px-4 md:px-8`}>
-        <div className="container mx-auto xl:max-w-[1280px] flex items-center justify-between">
+        <div className="container mx-auto flex items-center justify-between">
 
           {}
           <Link href="/" className="flex items-center gap-2 group">

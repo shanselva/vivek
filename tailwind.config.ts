@@ -17,9 +17,19 @@ const config: Config = {
         display: ['var(--font-mulish)', 'sans-serif'],
       },
       container: {
-        center:  true,
-        padding: '1.5rem',
-        screens: { xl: '1280px' },
+        center: true,
+        padding: {
+          DEFAULT: '1rem',
+          md: '1.5rem',
+          lg: '2rem',
+        },
+        screens: {
+          sm: '100%',
+          md: '100%',
+          lg: '100%',
+          xl: '100%',
+          '2xl': '100%',
+        },
       },
     },
   },

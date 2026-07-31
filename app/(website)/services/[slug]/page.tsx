@@ -49,7 +49,7 @@ export default async function ServiceDetailPage({
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/10 to-transparent w-3/4"></div>
         </div>
         
-        <div className="container relative z-10 mx-auto px-4 md:px-8 xl:max-w-[1280px]">
+        <div className="container relative z-10 mx-auto px-4 md:px-8">
           <Badge className="mb-4 text-sm px-4 py-1 flex items-center gap-2 w-max" variant="warning">
             <IconComponent size={14} />
             Service Excellence
@@ -61,7 +61,7 @@ export default async function ServiceDetailPage({
       </div>
 
       <section className="py-20 bg-surface">
-        <div className="container mx-auto px-4 xl:max-w-[1280px]">
+        <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             
             {}

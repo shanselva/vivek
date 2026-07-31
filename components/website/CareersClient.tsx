@@ -107,7 +107,7 @@ export function CareersClient({ initialCareers }: { initialCareers: Career[] }) 
 
   return (
     <section className="py-8 sm:py-12 bg-[#F8F9FA] text-[#1A1A1A] min-h-[70vh] relative overflow-hidden">
-      <div className="container mx-auto px-4 xl:max-w-[1280px] relative z-10">
+      <div className="container mx-auto px-4 relative z-10">
         
         {/* Search and Filters Bar (Sleek Dark Card on Light Background to stop Glare) */}
         <div className="bg-[#0f172a] text-white p-4 sm:p-6 rounded-2xl shadow-xl mb-8 flex flex-col md:flex-row gap-4 items-center justify-between border border-slate-800">

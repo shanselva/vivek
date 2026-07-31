@@ -43,7 +43,7 @@ export default async function GalleryPage({
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent w-2/3"></div>
         </div>
         
-        <div className="container mx-auto px-4 md:px-8 xl:max-w-[1280px] relative z-10 w-full">
+        <div className="container mx-auto px-4 md:px-8 relative z-10 w-full">
           <h1 className="text-3xl md:text-4xl lg:text-[42px] font-display font-bold text-white mb-4 leading-tight drop-shadow-md">
             Image <span className="text-yellow-500">Gallery</span>
           </h1>
@@ -54,7 +54,7 @@ export default async function GalleryPage({
       </div>
 
       <section className="py-16 bg-surface min-h-[50vh]">
-        <div className="container mx-auto px-4 xl:max-w-[1280px]">
+        <div className="container mx-auto px-4">
           
           {}
           <div className="flex overflow-x-auto whitespace-nowrap gap-3 md:gap-4 mb-12 pb-4 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:justify-center">
