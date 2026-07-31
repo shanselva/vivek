@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import React, { Suspense } from 'react';
 import { AboutPreview } from '@/components/website/AboutPreview';
 import { HomeHero, HeroSkeleton } from '@/components/website/home/HomeHero';
