@@ -25,6 +25,7 @@ export function ProjectForm({ id, onSuccess, onCancel }: ProjectFormProps) {
     category: '',
     status: 'ongoing',
     featured: false,
+    order: 0,
     location: '',
     client: '',
     year: '',
@@ -60,6 +61,7 @@ export function ProjectForm({ id, onSuccess, onCancel }: ProjectFormProps) {
               category: p.category || 'Commercial',
               status: p.status || 'ongoing',
               featured: p.featured || false,
+              order: p.order || 0,
               location: p.location || '',
               client: p.client || '',
               year: p.year ? p.year.toString() : '',
@@ -109,7 +111,7 @@ export function ProjectForm({ id, onSuccess, onCancel }: ProjectFormProps) {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData({ ...formData, [name]: checked });
     } else {
-      setFormData({ ...formData, [name]: value });
+      setFormData({ ...formData, [name]: name === 'order' ? parseInt(value) || 0 : value });
     }
 
     if (name === 'title' && !formData.slug) {
@@ -400,6 +402,13 @@ export function ProjectForm({ id, onSuccess, onCancel }: ProjectFormProps) {
             value={formData.year}
             onChange={handleChange}
             placeholder="e.g. 2024"
+          />
+          <Input
+            label="Display Order (lowest first)"
+            name="order"
+            type="number"
+            value={formData.order}
+            onChange={handleChange}
           />
         </div>
 

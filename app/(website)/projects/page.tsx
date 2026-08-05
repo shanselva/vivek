@@ -23,7 +23,7 @@ export default async function ProjectsPortfolioPage({
     await connectDB();
     const filter = category ? { category } : {};
     
-    const rawProjects = await Project.find(filter).sort({ createdAt: -1 }).lean();
+    const rawProjects = await Project.find(filter).sort({ order: 1, createdAt: -1 }).lean();
     projects = JSON.parse(JSON.stringify(rawProjects.map((p: any) => ({
       ...p,
       id: p._id?.toString()
@@ -33,8 +33,8 @@ export default async function ProjectsPortfolioPage({
     categories = Array.from(new Set(allProjects.map((p: any) => p.category).filter(Boolean))) as string[];
 
     const featuredProjects = await Project.find({ featured: true })
-      .select('coverImage images createdAt')
-      .sort({ createdAt: -1 })
+      .select('coverImage images order createdAt')
+      .sort({ order: 1, createdAt: -1 })
       .lean();
 
     heroImages = featuredProjects

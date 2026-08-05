@@ -48,6 +48,10 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       updateData.featured = formData.get('featured') === 'true';
     }
 
+    if (formData.has('order')) {
+      updateData.order = parseInt(formData.get('order') as string) || 0;
+    }
+
     const coverImage = formData.get('coverImage') as File;
     if (coverImage && coverImage.size > 0) {
       updateData.coverImage = await uploadToCloudinary(coverImage, 'construction-projects');

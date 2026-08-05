@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
     if (status) filter.status = status;
     if (featured === 'true') filter.featured = true;
 
-    let query = Project.find(filter).sort({ createdAt: -1 });
+    let query = Project.find(filter).sort({ order: 1, createdAt: -1 });
     if (limit) query = query.limit(limit);
 
     const projects = await query.lean();
@@ -83,6 +83,7 @@ export async function POST(req: NextRequest) {
       location: formData.get('location') as string || undefined,
       year: formData.get('year') ? parseInt(formData.get('year') as string) : undefined,
       featured: formData.get('featured') === 'true',
+      order: formData.has('order') ? parseInt(formData.get('order') as string) || 0 : 0,
       images: imageUrls,
       coverImage: coverImageUrl || undefined,
       seoTitle: formData.get('seoTitle') as string || undefined,

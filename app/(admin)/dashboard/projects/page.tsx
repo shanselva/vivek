@@ -117,6 +117,9 @@ function ProjectsContent() {
                   <p className="text-xs md:text-sm text-text-medium font-medium mb-3 truncate">{project.category}</p>
                   
                   <div className="flex gap-2 mt-auto">
+                     <Badge variant="default" className="text-[10px] md:text-xs px-2 py-0.5 shadow-sm">
+                       #{project.order ?? 0}
+                     </Badge>
                      <Badge variant={project.status === 'completed' ? 'success' : 'info'} className="text-[10px] md:text-xs px-2 py-0.5 shadow-sm">
                        {project.status}
                      </Badge>

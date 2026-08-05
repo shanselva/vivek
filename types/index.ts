@@ -10,6 +10,7 @@ export interface Project {
   location?: string;
   year?: number;
   featured: boolean;
+  order: number;
   images: string[];
   coverImage?: string;
   seoTitle?: string;

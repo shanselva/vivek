@@ -10,6 +10,7 @@ export interface IProject extends Document {
   location?: string;
   year?: number;
   featured: boolean;
+  order: number;
   images: string[];
   coverImage?: string;
   seoTitle?: string;
@@ -29,6 +30,7 @@ const ProjectSchema = new Schema<IProject>(
     location: { type: String },
     year: { type: Number },
     featured: { type: Boolean, default: false },
+    order: { type: Number, default: 0 },
     images: { type: [String], default: [] },
     coverImage: { type: String },
     seoTitle: { type: String },
@@ -36,6 +38,8 @@ const ProjectSchema = new Schema<IProject>(
   },
   { timestamps: true }
 );
+
+ProjectSchema.index({ order: 1, createdAt: -1 });
 
 export const Project: Model<IProject> =
   mongoose.models.Project || mongoose.model<IProject>('Project', ProjectSchema);
