@@ -22,22 +22,7 @@ export async function GET(req: NextRequest) {
     let query = Project.find(filter).sort({ order: 1, createdAt: -1 });
     if (limit) query = query.limit(limit);
 
-    let projects = await query.lean();
-
-    if (featured === 'true' && limit && projects.length < limit) {
-      const existingIds = projects.map((p: any) => p._id);
-      const fillFilter: any = {};
-      if (category) fillFilter.category = category;
-      if (status) fillFilter.status = status;
-      fillFilter._id = { $nin: existingIds };
-
-      const additional = await Project.find(fillFilter)
-        .sort({ order: 1, createdAt: -1 })
-        .limit(limit - projects.length)
-        .lean();
-
-      projects = [...projects, ...additional];
-    }
+    const projects = await query.lean();
 
     const result = projects.map((p: any) => ({
       ...p,
