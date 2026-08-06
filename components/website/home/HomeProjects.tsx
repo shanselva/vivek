@@ -26,7 +26,7 @@ function ProjectsSkeleton() {
 export function HomeProjects() {
   return (
     <DeferredSection
-      endpoint="/api/projects?featured=true&limit=10"
+      endpoint="/api/projects?featured=true&limit=12"
       minHeight={480}
       skeleton={<ProjectsSkeleton />}
     >

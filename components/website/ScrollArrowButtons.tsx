@@ -91,5 +91,14 @@ export function useHorizontalScroll(amount = 0.8) {
     node.scrollBy({ left: delta, behavior: 'smooth' });
   };
 
-  return { ref, scrollLeft, scrollRight };
+  const scrollTo = (index: number) => {
+    const node = ref.current;
+    if (!node) return;
+    const children = node.children;
+    if (children && children[index]) {
+      (children[index] as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    }
+  };
+
+  return { ref, scrollLeft, scrollRight, scrollTo };
 }
